@@ -93,12 +93,15 @@
 </section>
 
 <script>
+let currentMood = '';
+
 function next(current, next) {
   document.getElementById(current).classList.add('hidden');
   document.getElementById(next).classList.remove('hidden');
 }
 
 function showMood(type) {
+  currentMood = type;
   next('choose','content');
   const title = document.getElementById('title');
   const text = document.getElementById('text');
@@ -107,11 +110,11 @@ function showMood(type) {
   if(type === 'cute') {
     title.innerText = 'Certified Cutie 🐻';
     text.innerText = 'You being mad and cute at the same time is actually unfair.';
-    image.src = 'https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif';
+    image.src = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWJkZ2N4d2x6d2Y4eGJqdnN5bXQ2cW5lZ3Z4c2ZqY2FqY3F3eSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7aD2saalBwwftBIY/giphy.gif';
   }
   if(type === 'funny') {
     title.innerText = 'Breaking News 📰';
-    text.innerText = 'Local girl mad at boyfriend but still very adorable.';
+    text.innerText = 'Girl was mad, boyfriend was terrified… turns out she was just sleepy.';
     image.src = 'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif';
   }
   if(type === 'soft') {
@@ -122,7 +125,15 @@ function showMood(type) {
 }
 
 function surprise() {
-  alert('Plot twist: you’re still my favourite person 😌');
+  if(currentMood === 'cute') {
+    alert('Plot twist: you’re still illegally cute even when mad 😌');
+  }
+  if(currentMood === 'funny') {
+    alert('Update: boyfriend survived. Situation under control 😭');
+  }
+  if(currentMood === 'soft') {
+    alert('I’ve got you… even on your off days 💭');
+  }
   next('content','final');
 }
 
