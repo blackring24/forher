@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+      color: #333;
+      overflow-x: hidden;
+    }
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: #ff6b81;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background: #ff4757;
+    }
+    .hidden {
+      display: none;
+    }
+    img {
+      max-width: 250px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    .heart {
+      position: fixed;
+      color: red;
+      animation: float 5s linear infinite;
+    }
+    @keyframes float {
+      from {transform: translateY(100vh);} 
+      to {transform: translateY(-10vh);} 
+    }
+  </style>
+</head>
+<body>
+
+<section id="intro">
+  <h1>Hey you 😌</h1>
+  <p>Before you continue... this is not an apology. This is something better.</p>
+  <button onclick="next('intro','choose')">Continue</button>
+</section>
+
+<section id="choose" class="hidden">
+  <h1>Pick your vibe</h1>
+  <button onclick="showMood('cute')">Cute Mode</button>
+  <button onclick="showMood('funny')">Funny Mode</button>
+  <button onclick="showMood('soft')">Soft Mode</button>
+</section>
+
+<section id="content" class="hidden">
+  <h1 id="title"></h1>
+  <p id="text"></p>
+  <img id="image" src="" alt="">
+  <br>
+  <button onclick="surprise()">Tap for surprise</button>
+</section>
+
+<section id="final" class="hidden">
+  <h1>Final Level 🎯</h1>
+  <p>Mission: Send me one selfie right now. No excuses.</p>
+  <button onclick="hearts()">Complete Mission</button>
+</section>
+
+<script>
+function next(current, next) {
+  document.getElementById(current).classList.add('hidden');
+  document.getElementById(next).classList.remove('hidden');
+}
+
+function showMood(type) {
+  next('choose','content');
+  const title = document.getElementById('title');
+  const text = document.getElementById('text');
+  const image = document.getElementById('image');
+
+  if(type === 'cute') {
+    title.innerText = 'Certified Cutie 🐻';
+    text.innerText = 'You being mad and cute at the same time is actually unfair.';
+    image.src = 'https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif';
+  }
+  if(type === 'funny') {
+    title.innerText = 'Breaking News 📰';
+    text.innerText = 'Local girl mad at boyfriend but still very adorable.';
+    image.src = 'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif';
+  }
+  if(type === 'soft') {
+    title.innerText = 'Hey… 💭';
+    text.innerText = 'Bad mornings don’t get to ruin your whole day. I’m still here.';
+    image.src = 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif';
+  }
+}
+
+function surprise() {
+  alert('Plot twist: you’re still my favourite person 😌');
+  next('content','final');
+}
+
+function hearts() {
+  for(let i=0;i<30;i++) {
+    let heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerText = '❤️';
+    heart.style.left = Math.random()*100 + 'vw';
+    heart.style.fontSize = (Math.random()*20+10)+'px';
+    document.body.appendChild(heart);
+  }
+}
+</script>
+
+</body>
+</html>
